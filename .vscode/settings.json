@@ -5,8 +5,8 @@
       "server": "localhost",
       "port": 5432,
       "driver": "PostgreSQL",
-      "database": "xdb",
-      "username": "dilauoo",
+      "database": "dbx",
+      "username": "user",
       "name": "xdbw"
     }
   ]

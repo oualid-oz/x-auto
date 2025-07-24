@@ -1,3 +1,7 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import undetected_chromedriver as uc
 import logging
 import pickle
@@ -11,14 +15,14 @@ active_drivers = {}
 
 def setup_driver(session_id: str):
     """Set up and return an undetected ChromeDriver."""
-    options = uc.ChromeOptions()
-    options.binary_location = "/usr/bin/google-chrome"
-    options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+
+    chrome_options = Options()
+    chrome_options.add_argument("--headless") 
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--no-sandbox")
     
-    driver = uc.Chrome(options=options)
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     active_drivers[session_id] = driver
     logger.info("WebDriver created for session ID: %s", session_id)
     return driver
