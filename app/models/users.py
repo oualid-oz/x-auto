@@ -8,5 +8,4 @@ class User(Base):
     name = Column(String, index=True)
     username = Column(String, index=True)
     created_at = Column(DateTime, default=datetime.datetime.now(datetime.timezone.utc))
-    comment_type = Column(String, index=True)
     

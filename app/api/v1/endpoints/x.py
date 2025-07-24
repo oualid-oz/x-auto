@@ -98,13 +98,13 @@ def get_users():
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/user", tags=["x-resource"])
-def save_user(name: str , username: str, comment_type: str):
+def save_user(name: str , username: str):
     """Save new user in database."""
     from app.db.session import SessionLocal
     from app.models.users import User
     db = SessionLocal()
     try:
-        new_user = User(name=name, username=username , created_at=datetime.now(), comment_type=comment_type)
+        new_user = User(name=name, username=username , created_at=datetime.now())
         db.add(new_user)
         db.commit()
         return {"message": "User saved successfully!"}
